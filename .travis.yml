@@ -27,7 +27,7 @@ install:
  - tar xfz verilator.tar.gz
  - export VERILATOR_ROOT=${PWD}/verilator
  - export PATH=${VERILATOR_ROOT}/bin:$PATH
- - unset VERILATOR_ROOT
+ - export VERILATOR_ROOT=${PWD}/verilator/share/verilator
  - verilator --version
 
 before_script:
