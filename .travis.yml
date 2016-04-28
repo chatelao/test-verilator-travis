@@ -19,7 +19,7 @@ env:
 
 install:
  # Install verilator.
- - curl https://github.com/diadatp/verilator/releases/download/verilator_3_882/verilator.tar.gz
+ - wget https://github.com/diadatp/verilator/releases/download/verilator_3_882/verilator.tar.gz
  - tar xfz verilator.tar.gz
  - export VERILATOR_ROOT=${PWD}/verilator
  - export PATH=${VERILATOR_ROOT}/bin:$PATH
