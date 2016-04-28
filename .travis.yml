@@ -1,0 +1,39 @@
+#=========================================================================
+# Travis CI Configuration
+#=========================================================================
+# This file configures Travis CI to automatically run tests for this RTL
+# project everytime a commit is made.
+
+# Prefer use of container-based environment as they start up faster and
+# provide more RAM and CPU cores.
+
+sudo: false
+
+# No Git operations will be performed. Best to fetch only the latest commit.
+git:
+  depth: 1
+
+# TODO: Verify that this setting is optimal.
+env:
+  - JOBS=2
+
+install:
+ # Install verilator.
+ - curl https://github.com/diadatp/verilator/releases/download/verilator_3_882/verilator.tar.gz
+ - tar xfz verilator.tar.gz
+ - export VERILATOR_ROOT=${PWD}/verilator
+ - export PATH=${VERILATOR_ROOT}/bin:$PATH
+ - verilator --version
+
+before_script:
+ # Build the RTL and Cpp testbench.
+ - make build_sim && make build_tb
+
+script:
+ # Run the simulation.
+ - make run_sim
+
+after_success:
+  - ls -al *
+  - tar -zcvf payload.tar.gz *.vcd
+  - curl --upload-file ./payload.tar.gz https://transfer.sh
