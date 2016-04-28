@@ -17,12 +17,17 @@ git:
 env:
   - JOBS=2
 
+# Don't need email notifications for now.
+notifications:
+  email: false
+
 install:
  # Install verilator.
  - wget https://github.com/diadatp/verilator/releases/download/verilator_3_882/verilator.tar.gz
  - tar xfz verilator.tar.gz
  - export VERILATOR_ROOT=${PWD}/verilator
  - export PATH=${VERILATOR_ROOT}/bin:$PATH
+ - unset VERILATOR_ROOT
  - verilator --version
 
 before_script:
