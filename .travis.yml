@@ -58,6 +58,7 @@ install:
  - export VERILATOR_ROOT=${PWD}
  - export PATH=${VERILATOR_ROOT}/bin:$PATH
  - verilator -V
+ - cd ..
 
 before_script:
  # Build the RTL and Cpp testbench.
