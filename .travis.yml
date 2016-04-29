@@ -24,8 +24,8 @@ notifications:
 install:
  # Install verilator.
  - wget https://github.com/diadatp/verilator/releases/download/verilator_3_882/verilator_3_882.tar.gz
- - tar xfz verilator_3_882.tar.gz
- - export VERILATOR_ROOT=${PWD}/verilator
+ - tar xfz verilator_3_882.tar.gzna
+ - export VERILATOR_ROOT=${PWD}/verilator_3_882
  - export PATH=${VERILATOR_ROOT}/bin:$PATH
  - verilator -V
 
