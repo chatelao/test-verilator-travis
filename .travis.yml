@@ -9,6 +9,34 @@
 
 sudo: false
 
+# Install the build requirements
+addons:
+  apt:
+   sources:
+    # For gcc-4.8
+    - ubuntu-toolchain-r-test
+   packages:
+    # Dependencies from tutorial
+    - autoconf
+    - automake
+    - autotools-dev
+    - curl
+    - libmpc-dev
+    - libmpfr-dev
+    - libgmp-dev
+    - gawk
+    - build-essential
+    - bison
+    - flex
+    - texinfo
+    - gperf
+    - libncurses5-dev
+    - libusb-1.0-0
+    - libboost-dev
+    # Need gcc-4.8
+    - gcc-4.8
+    - g++-4.8
+
 # No Git operations will be performed. Best to fetch only the latest commit.
 git:
   depth: 1
@@ -22,10 +50,12 @@ notifications:
   email: false
 
 install:
- # Install verilator.
- - wget https://github.com/diadatp/verilator/releases/download/verilator_3_882/verilator_3_882.tar.gz
+ # Build Verilator.
+ - wget https://github.com/diadatp/verilator/archive/verilator_3_882.tar.gz
  - tar xfz verilator_3_882.tar.gz
- - export VERILATOR_ROOT=${PWD}/verilator_3_882
+ - cd verilator-verilator_3_882
+ - autoconf && ./configure && make
+ - export VERILATOR_ROOT=${PWD}
  - export PATH=${VERILATOR_ROOT}/bin:$PATH
  - verilator -V
 
