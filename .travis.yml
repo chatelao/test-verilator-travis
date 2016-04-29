@@ -23,12 +23,11 @@ notifications:
 
 install:
  # Install verilator.
- - wget https://github.com/diadatp/verilator/releases/download/verilator_3_882/verilator.tar.gz
- - tar xfz verilator.tar.gz
+ - wget https://github.com/diadatp/verilator/releases/download/verilator_3_882/verilator_3_882.tar.gz
+ - tar xfz verilator_3_882.tar.gz
  - export VERILATOR_ROOT=${PWD}/verilator
  - export PATH=${VERILATOR_ROOT}/bin:$PATH
- - export VERILATOR_ROOT=${PWD}/verilator/share/verilator
- - verilator --version
+ - verilator -V
 
 before_script:
  # Build the RTL and Cpp testbench.
